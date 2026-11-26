@@ -35,7 +35,7 @@ export const PROJECTS: L<Project[]> = {
     {
       id: 'plinth',
       title: 'Plinth',
-      tagline: 'La herramienta diaria del asesor inmobiliario, pensada para el celular.',
+      tagline: 'La herramienta de trabajo del asesor inmobiliario, pensada para el celular.',
       year: '2026 · en uso',
       role: 'Fundador y único desarrollador',
       metric: { value: '6 propiedades en 40 min', label: 'captadas por un asesor en su primer día de uso. Antes captaba unas 10 por mes.' },
@@ -83,7 +83,7 @@ export const PROJECTS: L<Project[]> = {
     {
       id: 'plinth',
       title: 'Plinth',
-      tagline: "A real estate agent's daily tool, designed for the phone.",
+      tagline: "A real estate agent's work tool, designed for the phone.",
       year: '2026 · in use',
       role: 'Founder and sole developer',
       metric: { value: '6 listings in 40 min', label: 'secured by an agent on his first day of use. Before, he secured about 10 per month.' },
@@ -183,7 +183,7 @@ export interface CaseSection { title: string; paragraphs?: string[]; items?: { t
 export const PLINTH_CASE: L<{ title: string; subtitle: string; facts: { label: string; value: string }[]; sections: CaseSection[]; back: string }> = {
   es: {
     title: 'Plinth',
-    subtitle: 'Cómo pasé de una herramienta para limpiar fotos a la app diaria de un asesor inmobiliario.',
+    subtitle: 'Cómo pasé de una herramienta para limpiar fotos a la app de trabajo de un asesor inmobiliario.',
     facts: [
       { label: 'Rol', value: 'Fundador y único desarrollador' },
       { label: 'Período', value: 'Sept. 2026 – hoy' },
@@ -239,7 +239,7 @@ export const PLINTH_CASE: L<{ title: string; subtitle: string; facts: { label: s
   },
   en: {
     title: 'Plinth',
-    subtitle: "How a photo-cleaning tool became a real estate agent's daily app.",
+    subtitle: "How a photo-cleaning tool became a real estate agent's work app.",
     facts: [
       { label: 'Role', value: 'Founder and sole developer' },
       { label: 'Period', value: 'Sep 2026 – present' },
