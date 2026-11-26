@@ -2,6 +2,9 @@ import { PROJECTS, type Shot } from '../data/data';
 import { useLanguage } from '../context/LanguageContext';
 import { openShot } from './Lightbox';
 
+/** Cada captura existe en 390px y en 320px; la grilla las muestra a ~160px. */
+const srcSet = (src: string) => `${src.replace(/\.webp$/, '-320.webp')} 320w, ${src} 390w`;
+
 export const PhoneShots = ({ shots }: { shots: Shot[] }) => {
   const { t } = useLanguage();
   return (
@@ -15,6 +18,8 @@ export const PhoneShots = ({ shots }: { shots: Shot[] }) => {
           >
             <img
               src={s.src}
+              srcSet={srcSet(s.src)}
+              sizes="160px"
               alt=""
               loading="lazy"
               width={390}
@@ -100,7 +105,7 @@ export function Projects() {
               </div>
               {p.shots && (
                 <button onClick={() => openShot(p.shots![0])} aria-label={`${t.projects.enlarge}: ${p.shots[0].alt}`} className="block cursor-zoom-in rounded-2xl">
-                  <img src={p.shots[0].src} alt="" loading="lazy" width={390} height={844}
+                  <img src={p.shots[0].src} srcSet={srcSet(p.shots[0].src)} sizes="(min-width: 768px) 520px, 90vw" alt="" loading="lazy" width={390} height={844}
                     className="w-full max-h-72 object-cover object-top rounded-2xl border border-white/10" />
                 </button>
               )}

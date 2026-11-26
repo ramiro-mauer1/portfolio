@@ -23,7 +23,7 @@ export const Footer = () => {
 
         <p className="max-w-md text-center md:text-left text-xs leading-relaxed text-[#94a3b8]">
           {t.footer.colophon}{' '}
-          <a href={PROFILE.source} target="_blank" rel="noopener noreferrer" className="text-[#d8b26e] hover:text-[#e3c68a] underline-offset-4 hover:underline">
+          <a href={PROFILE.source} target="_blank" rel="noopener noreferrer" className="text-[#d8b26e] hover:text-[#e3c68a] underline decoration-[#d8b26e]/40 underline-offset-4 hover:decoration-[#e3c68a]">
             {t.footer.source}
           </a>
         </p>

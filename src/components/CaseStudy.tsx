@@ -4,8 +4,8 @@ import { PhoneShots } from './Projects';
 import ReadingProgress from './ReadingProgress';
 
 const extraShot = {
-  es: { src: '/shots/plinth-fotos.jpg', alt: 'Mejora de fotos 4x con IA en el navegador' },
-  en: { src: '/shots/plinth-fotos.jpg', alt: '4x AI photo enhancement in the browser' },
+  es: { src: '/shots/plinth-fotos.webp', alt: 'Mejora de fotos 4x con IA en el navegador' },
+  en: { src: '/shots/plinth-fotos.webp', alt: '4x AI photo enhancement in the browser' },
 };
 
 export default function CaseStudy() {

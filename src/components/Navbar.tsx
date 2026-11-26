@@ -67,7 +67,7 @@ export const Navbar = () => {
             ? 'bg-[#061615]/85 backdrop-blur-xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
             : 'bg-[#061615]/50 backdrop-blur-md border-white/5'
         }`}>
-          <a href="#" className="flex items-center gap-2 pl-1 shrink-0" aria-label="Ramiro Mauer">
+          <a href="#" className="flex items-center gap-2 pl-1 shrink-0" aria-label="RM. Ramiro Mauer">
             <span className="font-bold tracking-tighter text-[#d8b26e] text-lg leading-none">
               RM<span className="text-white">.</span>
             </span>
@@ -94,12 +94,12 @@ export const Navbar = () => {
           <div className="flex items-center gap-2 pr-1">
             <button
               onClick={openCommandMenu}
-              aria-label={t.menu.open}
               title={t.menu.open}
               className="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-black/20 px-2.5 py-1.5 text-[11px] font-semibold text-[#94a3b8] hover:text-white hover:border-white/25 transition-colors"
             >
               <kbd className="font-sans">{isMac ? '⌘' : 'Ctrl'}</kbd>
               <kbd className="font-sans">K</kbd>
+              <span className="sr-only">{t.menu.open}</span>
             </button>
             <button
               onClick={toggleLanguage}
