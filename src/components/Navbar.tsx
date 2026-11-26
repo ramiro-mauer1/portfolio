@@ -74,13 +74,13 @@ export const Navbar = () => {
             <span className="hidden sm:inline text-sm font-semibold text-[#f1f5f9]">Ramiro Mauer</span>
           </a>
 
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-5 lg:gap-7">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
                 aria-current={active === item.id ? 'true' : undefined}
-                className={`relative text-sm font-medium transition-colors ${active === item.id ? 'text-white' : 'text-[#94a3b8] hover:text-white'}`}
+                className={`relative whitespace-nowrap text-sm font-medium transition-colors ${active === item.id ? 'text-white' : 'text-[#94a3b8] hover:text-white'}`}
               >
                 {item.label}
                 <span
@@ -96,7 +96,7 @@ export const Navbar = () => {
               onClick={openCommandMenu}
               aria-label={t.menu.open}
               title={t.menu.open}
-              className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-black/20 px-2.5 py-1.5 text-[11px] font-semibold text-[#94a3b8] hover:text-white hover:border-white/25 transition-colors"
+              className="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-black/20 px-2.5 py-1.5 text-[11px] font-semibold text-[#94a3b8] hover:text-white hover:border-white/25 transition-colors"
             >
               <kbd className="font-sans">{isMac ? '⌘' : 'Ctrl'}</kbd>
               <kbd className="font-sans">K</kbd>
@@ -112,7 +112,7 @@ export const Navbar = () => {
             <a
               href={PROFILE.cv[lang]}
               download
-              className="hidden md:flex items-center bg-white text-black hover:bg-[#d8b26e] rounded-full px-4 py-2 text-sm font-semibold transition-colors"
+              className="hidden md:flex items-center whitespace-nowrap bg-white text-black hover:bg-[#d8b26e] rounded-full px-4 py-2 text-sm font-semibold transition-colors"
             >
               {t.nav.cv}
             </a>
