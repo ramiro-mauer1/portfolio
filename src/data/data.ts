@@ -3,6 +3,7 @@ type L<T> = Record<Lang, T>;
 
 export const PROFILE = {
   name: 'Ramiro Mauer',
+  source: 'https://github.com/ramiro-mauer1/portfolio',
   role: 'AI Product Engineer',
   location: 'Buenos Aires, Argentina',
   email: 'mauerramiro@gmail.com',
@@ -28,6 +29,7 @@ export interface Project {
   shots?: Shot[];
   caseStudy?: string; // hash route
   code?: string;
+  demo?: string;
 }
 
 export const PROJECTS: L<Project[]> = {
@@ -67,6 +69,7 @@ export const PROJECTS: L<Project[]> = {
       tech: ['Next.js', 'TypeScript', 'Gemini API', 'Framer Motion', 'PWA'],
       shots: [{ src: '/shots/focusquest-inicio.jpg', alt: 'Focus Quest: niveles, habilidades y campo para volcar pendientes' }],
       code: 'https://github.com/ramiro-mauer1/focus-quest-onyx',
+      demo: 'https://focusquest-brown.vercel.app',
     },
     {
       id: 'geodental',
@@ -115,6 +118,7 @@ export const PROJECTS: L<Project[]> = {
       tech: ['Next.js', 'TypeScript', 'Gemini API', 'Framer Motion', 'PWA'],
       shots: [{ src: '/shots/focusquest-inicio.jpg', alt: 'Focus Quest: levels, skills, and a field to dump your to-dos' }],
       code: 'https://github.com/ramiro-mauer1/focus-quest-onyx',
+      demo: 'https://focusquest-brown.vercel.app',
     },
     {
       id: 'geodental',
@@ -231,7 +235,7 @@ export const PLINTH_CASE: L<{ title: string; subtitle: string; facts: { label: s
       {
         title: 'Qué haría distinto',
         paragraphs: [
-          'Pondría el control de calidad en CI y la medición de uso desde el primer día. Los sumé después de dos meses, y con datos de uso desde el inicio podría mostrar más que una sola métrica.',
+          'Pondría el control de calidad en CI desde el primer día: lo sumé recién a los dos meses y medio, y hasta entonces cada error se encontraba a mano. También mediría el uso desde el inicio: hoy el resultado se apoya en una sola métrica.',
         ],
       },
     ],
@@ -287,7 +291,7 @@ export const PLINTH_CASE: L<{ title: string; subtitle: string; facts: { label: s
       {
         title: 'What I would do differently',
         paragraphs: [
-          'I would set up the CI quality gate and usage tracking from day one. I added them after two months, and with usage data from the start I could show more than a single metric.',
+          'I would set up the CI quality gate from day one: I only added it two and a half months in, and until then every bug was found by hand. I would also track usage from the start: today the result rests on a single metric.',
         ],
       },
     ],

@@ -1,6 +1,7 @@
 import { PLINTH_CASE, PROJECTS } from '../data/data';
 import { useLanguage } from '../context/LanguageContext';
 import { PhoneShots } from './Projects';
+import ReadingProgress from './ReadingProgress';
 
 const extraShot = {
   es: { src: '/shots/plinth-fotos.jpg', alt: 'Mejora de fotos 4x con IA en el navegador' },
@@ -15,6 +16,7 @@ export default function CaseStudy() {
 
   return (
     <article className="pt-32 pb-20 lg:pt-40">
+      <ReadingProgress />
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <a href="#proyectos" className="text-sm text-[#d8b26e] hover:text-[#e3c68a]">&larr; {c.back}</a>
         <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-[#f1f5f9]">{c.title}</h1>

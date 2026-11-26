@@ -9,7 +9,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-[rgba(216,178,110,0.05)] py-12 mt-12 bg-[#051110]">
+    <footer className="relative z-10 border-t border-[rgba(216,178,110,0.05)] py-12 mt-12 bg-[#051110]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
         <div className="flex flex-col items-center md:items-start">
@@ -20,6 +20,13 @@ export const Footer = () => {
             &copy; {new Date().getFullYear()} {PROFILE.name}.
           </p>
         </div>
+
+        <p className="max-w-md text-center md:text-left text-xs leading-relaxed text-[#94a3b8]">
+          {t.footer.colophon}{' '}
+          <a href={PROFILE.source} target="_blank" rel="noopener noreferrer" className="text-[#d8b26e] hover:text-[#e3c68a] underline-offset-4 hover:underline">
+            {t.footer.source}
+          </a>
+        </p>
 
         <button
           onClick={scrollToTop}

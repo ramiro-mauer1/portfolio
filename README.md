@@ -12,6 +12,7 @@ Sitio personal de Ramiro Mauer, AI Product Engineer en Buenos Aires.
 - **Cómo trabajo**: el método con el que construyo dirigiendo agentes de código, con evidencia de proyectos reales.
 - **Notas** (`/#nota-voz`, `/#nota-fotos`): cómo resolví problemas concretos.
 - **Español e inglés**, CV descargable en PDF e imagen de vista previa para compartir el link.
+- **Detalles de interfaz**: menú de comandos (⌘K / Ctrl+K), grilla que se ilumina con el cursor, capturas ampliables, barra de lectura en notas y caso de estudio.
 
 ## Decisiones técnicas
 

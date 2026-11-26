@@ -1,23 +1,33 @@
 import { PROJECTS, type Shot } from '../data/data';
 import { useLanguage } from '../context/LanguageContext';
+import { openShot } from './Lightbox';
 
-export const PhoneShots = ({ shots }: { shots: Shot[] }) => (
-  <div className="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1 snap-x">
-    {shots.map((s) => (
-      <figure key={s.src} className="snap-start shrink-0 w-[150px] sm:w-[160px]">
-        <img
-          src={s.src}
-          alt={s.alt}
-          loading="lazy"
-          width={390}
-          height={844}
-          className="w-full h-auto rounded-[1.4rem] border border-white/10 bg-black shadow-[0_12px_30px_rgba(0,0,0,0.45)]"
-        />
-        <figcaption className="mt-2 text-xs text-[#94a3b8] leading-snug">{s.alt}</figcaption>
-      </figure>
-    ))}
-  </div>
-);
+export const PhoneShots = ({ shots }: { shots: Shot[] }) => {
+  const { t } = useLanguage();
+  return (
+    <div className="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1 pt-1 snap-x">
+      {shots.map((s) => (
+        <figure key={s.src} className="snap-start shrink-0 w-[150px] sm:w-[160px]">
+          <button
+            onClick={() => openShot(s)}
+            aria-label={`${t.projects.enlarge}: ${s.alt}`}
+            className="block w-full cursor-zoom-in rounded-[1.4rem] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1"
+          >
+            <img
+              src={s.src}
+              alt=""
+              loading="lazy"
+              width={390}
+              height={844}
+              className="w-full h-auto rounded-[1.4rem] border border-white/10 bg-black shadow-[0_12px_30px_rgba(0,0,0,0.45)]"
+            />
+          </button>
+          <figcaption className="mt-2 text-xs text-[#94a3b8] leading-snug">{s.alt}</figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+};
 
 const Chips = ({ items }: { items: string[] }) => (
   <div className="flex flex-wrap gap-2">
@@ -78,7 +88,7 @@ export function Projects() {
         </article>
 
         {/* Others */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 items-start">
           {rest.map((p) => (
             <article key={p.id} className="rounded-3xl border border-[rgba(216,178,110,0.1)] p-6 md:p-8 flex flex-col gap-4 min-w-0">
               <div>
@@ -89,8 +99,10 @@ export function Projects() {
                 <p className="mt-1 text-[#f1f5f9]/90 text-sm">{p.tagline}</p>
               </div>
               {p.shots && (
-                <img src={p.shots[0].src} alt={p.shots[0].alt} loading="lazy" width={390} height={844}
-                  className="w-full max-h-72 object-cover object-top rounded-2xl border border-white/10" />
+                <button onClick={() => openShot(p.shots![0])} aria-label={`${t.projects.enlarge}: ${p.shots[0].alt}`} className="block cursor-zoom-in rounded-2xl">
+                  <img src={p.shots[0].src} alt="" loading="lazy" width={390} height={844}
+                    className="w-full max-h-72 object-cover object-top rounded-2xl border border-white/10" />
+                </button>
               )}
               <p className="text-sm text-[#94a3b8] leading-relaxed">{p.summary}</p>
               <ul className="space-y-2">
@@ -100,10 +112,19 @@ export function Projects() {
               </ul>
               <div className="mt-auto pt-2 space-y-4">
                 <Chips items={p.tech} />
-                {p.code && (
-                  <a href={p.code} target="_blank" rel="noopener noreferrer" className="inline-flex text-sm text-[#d8b26e] hover:text-[#e3c68a] font-medium">
-                    {t.projects.viewCode} &rarr;
-                  </a>
+                {(p.demo || p.code) && (
+                  <div className="flex flex-wrap items-center gap-3">
+                    {p.demo && (
+                      <a href={p.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full bg-[#d8b26e] text-[#061615] px-4 py-2 text-sm font-semibold hover:bg-[#e3c68a] transition-colors">
+                        {t.projects.viewDemo}
+                      </a>
+                    )}
+                    {p.code && (
+                      <a href={p.code} target="_blank" rel="noopener noreferrer" className="inline-flex text-sm text-[#d8b26e] hover:text-[#e3c68a] font-medium">
+                        {t.projects.viewCode} &rarr;
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </article>

@@ -2,11 +2,49 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { PROFILE } from '../data/data';
+import { openCommandMenu } from './CommandMenu';
+
+const SECTIONS = ['proyectos', 'metodo', 'notas', 'contacto'];
+
+/** Sección visible en pantalla, para marcarla en la barra (como en el portfolio de Brittany Chiang). */
+const useActiveSection = () => {
+  const [active, setActive] = useState<string | null>(null);
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    const setup = () => {
+      observer?.disconnect();
+      setActive(null);
+      const els = SECTIONS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+      if (!els.length) return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) setActive(e.target.id);
+          });
+        },
+        { rootMargin: '-45% 0px -50% 0px' },
+      );
+      els.forEach((el) => observer!.observe(el));
+    };
+    const t = window.setTimeout(setup, 50);
+    const onHash = () => window.setTimeout(setup, 50);
+    window.addEventListener('hashchange', onHash);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener('hashchange', onHash);
+      observer?.disconnect();
+    };
+  }, []);
+  return active;
+};
+
+const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform);
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, toggleLanguage, t } = useLanguage();
+  const active = useActiveSection();
 
   const navItems = [
     { id: 'proyectos', label: t.nav.proyectos },
@@ -38,13 +76,31 @@ export const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-7">
             {navItems.map((item) => (
-              <a key={item.id} href={`#${item.id}`} className="text-sm font-medium text-[#94a3b8] hover:text-white transition-colors">
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                aria-current={active === item.id ? 'true' : undefined}
+                className={`relative text-sm font-medium transition-colors ${active === item.id ? 'text-white' : 'text-[#94a3b8] hover:text-white'}`}
+              >
                 {item.label}
+                <span
+                  aria-hidden="true"
+                  className={`absolute -bottom-1.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#d8b26e] transition-opacity duration-300 ${active === item.id ? 'opacity-100' : 'opacity-0'}`}
+                />
               </a>
             ))}
           </div>
 
           <div className="flex items-center gap-2 pr-1">
+            <button
+              onClick={openCommandMenu}
+              aria-label={t.menu.open}
+              title={t.menu.open}
+              className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-black/20 px-2.5 py-1.5 text-[11px] font-semibold text-[#94a3b8] hover:text-white hover:border-white/25 transition-colors"
+            >
+              <kbd className="font-sans">{isMac ? '⌘' : 'Ctrl'}</kbd>
+              <kbd className="font-sans">K</kbd>
+            </button>
             <button
               onClick={toggleLanguage}
               className="hidden md:flex items-center rounded-full border border-white/10 bg-black/20 p-0.5 text-[11px] font-bold tracking-widest"
